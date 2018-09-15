@@ -11,7 +11,7 @@ export default function ajax(url,data={},type="GET") {
     if(type=='GET'){
       //准备url query数据
       let dataStr='';
-      Object.key(data).forEach(key=>{
+      Object.keys(data).forEach(key=>{
         dataStr+=key+'='+data[key]+'&'
       })
       if(dataStr!==''){

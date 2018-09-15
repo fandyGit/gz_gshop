@@ -8,11 +8,19 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
   import FooterGuide from './components/FooterGuide/FooterGuide'
 export default {
   name: 'App',
   components:{
     FooterGuide
+  },
+  mounted(){
+    //this.$store.dispatch('getAddress');
+    this.getAddress();//更新状态
+  },
+  methods:{//更新状态在方法中
+    ...mapActions(['getAddress']),
   }
 }
 </script>
