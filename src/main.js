@@ -2,9 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import { Button } from 'mint-ui';
 import router from './router/index'
 import store from './store/index'
-import { Button } from 'mint-ui';
+import './mock/mockServer' //加载mock数据即可
+
 
 Vue.component(Button.name, Button);
 

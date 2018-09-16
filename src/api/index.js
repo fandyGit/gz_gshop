@@ -33,3 +33,15 @@ export const reqUserInfo=()=>ajax(BASE_URL+'/userinfo');
 
 // [10、用户登出](#10用户登出)<br/>
 export const reqLogout=()=>ajax(BASE_URL+'/logout');
+
+
+
+/*
+* mock数据
+* */
+//请求商品接口
+export const reqShopGoods=()=>ajax('/goods');
+//请求商品接口
+export const reqShopInfo=()=>ajax('/info');
+//请求评论接口
+export const reqShopRatings=()=>ajax('/ratings');

@@ -6,7 +6,10 @@ import {
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
-  RESET_USER_INFO
+  RESET_USER_INFO,
+  RECEIVE_GOODS,
+  RECEIVE_RATINGS,
+  RECEIVE_INFO,
 } from "./mutationts-type";
 import {
   reqAddress,
@@ -14,6 +17,9 @@ import {
   reqShops,
   reqUserInfo,
   reqLogout,
+  reqShopGoods,
+  reqShopInfo,
+  reqShopRatings
 } from "../api";
 
 
@@ -68,5 +74,30 @@ export default {
     if(result.code===0){
       commit(RESET_USER_INFO);
     }
-  }
+  },
+
+  //异步获取商品信息数据
+  async getShopGoods({commit}){
+    const result=await reqShopGoods();
+    if(result.code===0){
+      const goods=result.data;
+      commit(RECEIVE_GOODS,{goods})
+    }
+  },
+  //异步获取商品信息数据
+  async getShopInfo({commit}){
+    const result=await reqShopInfo();
+    if(result.code===0){
+      const info=result.data;
+      commit(RECEIVE_INFO,{info})
+    }
+  },
+  //异步获取商品评论信息数据
+  async getShopRatings({commit}){
+    const result=await reqShopInfo();
+    if(result.code===0){
+      const ratings=result.data;
+      commit(RECEIVE_RATINGS,{ratings})
+    }
+  },
 }
