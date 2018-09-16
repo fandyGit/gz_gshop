@@ -77,11 +77,13 @@ export default {
   },
 
   //异步获取商品信息数据
-  async getShopGoods({commit}){
+  async getShopGoods({commit},callback){
     const result=await reqShopGoods();
     if(result.code===0){
       const goods=result.data;
       commit(RECEIVE_GOODS,{goods})
+      //此时数据已经获取到，通知组件更新可以滑动啦
+      callback && callback();
     }
   },
   //异步获取商品信息数据
