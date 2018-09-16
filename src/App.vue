@@ -17,10 +17,11 @@ export default {
   },
   mounted(){
     //this.$store.dispatch('getAddress');
-    this.getAddress();//更新状态
+    this.getAddress();//更新地址状态
+    this.getUserInfo();//更新用户信息状态
   },
   methods:{//更新状态在方法中
-    ...mapActions(['getAddress']),
+    ...mapActions(['getAddress','getUserInfo']),
   }
 }
 </script>

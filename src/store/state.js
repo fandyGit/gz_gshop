@@ -7,5 +7,6 @@ export default {
   address:{},//地址相关数据
   categorys:[],//食品分类的
   shops:[],//商家的数组
+  userInfo:{},//用户信息
 
 }

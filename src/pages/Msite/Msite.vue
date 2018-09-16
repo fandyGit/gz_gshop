@@ -3,14 +3,17 @@
     <!--首页头部-->
     <HeaderTop :title="address.name">
       <slot slot="left">
-        <span class="header_search">
+        <router-link class="header_search" to="/search">
           <i class="iconfont icon-sousuo"></i>
-        </span>
+        </router-link>
       </slot>
       <slot slot="right">
-        <span class="header_login">
-          <span class="header_login_text">登录|注册</span>
-        </span>
+        <router-link class="header_login" :to="userInfo._id?'/userInfo':'/login'">
+          <span class="header_login_text" v-if="!userInfo">登录|注册</span>
+          <span class="header_login_text" v-else>
+            <i class="iconfont icon-person"></i>
+          </span>
+        </router-link>
       </slot>
     </HeaderTop>
     <!--首页导航-->
@@ -66,7 +69,7 @@
 
     },
     computed:{
-      ...mapState(['address','categorys']),
+      ...mapState(['address','categorys','userInfo']),
       //将这个一维数组切割成8个的二维数组
       categorysArr(){
         const {categorys}=this;
