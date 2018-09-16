@@ -28,8 +28,10 @@ export default {
   async getCategorys({commit,state}){
     //发送ajax请求
     const result =await reqFoodCategorys();
+    //console.log(result)
     if(result.code===0){
       const categorys=result.data;
+      //console.log(categorys)
       commit(RECEIVE_CATEGORYS,{categorys})
     }
   },
