@@ -22,6 +22,7 @@
             <ul>
               <li class="food-item bottom-border-1px"
                   v-for="(food,index) in good.foods"
+                  @click="showFood(food)"
               >
                 <div class="icon">
                   <img width="57" height="57" :src="food.icon">
@@ -38,7 +39,7 @@
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    CartControl
+                    <CartControl  :food='food'></CartControl>
                   </div>
                 </div>
               </li>
@@ -46,21 +47,25 @@
           </li>
         </ul>
       </div>
-      <!--<ShopCart />-->
+      <ShopCart />
     </div>
-    <!--<Food :food="food" ref="food"/>-->
+    <Food :food="food" ref="food"/>
   </div>
 </template>
 
 <script>
   import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
+  import CartControl from '../../../components/CartControl/CartControl'
+  import Food from '../../../components/Food/Food'
+  import ShopCart from '../../../components/ShopCart/ShopCart'
   export default {
     name: "ShopGoods",
     data(){
       return{
         scrollY:0,//右侧滑动的Y轴坐标（滑动时刻实时变化）
         tops:[],//每一个ul的高度，页面展示的时候计算一次
+        food:{},//如果为空的话，对页面渲染会有影响，{}就不会
       }
     },
     mounted(){
@@ -84,7 +89,7 @@
 
         //返回结果
         return index;
-      }
+      },
     },
     methods:{
       //非事件回调函数加一个_进行区别
@@ -129,7 +134,19 @@
         this.scrollY=scrollY;
 
         this.foodsWrapper.scrollTo(0,-scrollY,300);
+      },
+      //显示食品图片
+      showFood(food){
+        //更新food数据
+        this.food=food;
+        //显示food页面
+        this.$refs.food.toggleShow();//父组件调用子组件的方法
       }
+    },
+    components:{
+      CartControl,
+      Food,
+      ShopCart
     }
   }
 </script>

@@ -10,3 +10,6 @@ export const RESET_USER_INFO='reset_user_info';//重置用户信息
 export const RECEIVE_GOODS='receive_goods';//接受商品信息数据
 export const RECEIVE_RATINGS='receive_ratings';//接受用户评论数据
 export const RECEIVE_INFO='receive_info';//接受用户信息数据
+
+export const INCREAMENT_FOOD_COUNT='increament_food_count';//增加商品数量
+export const DECREAMENT_FOOD_COUNT='decreament_food_count';//减少商品数量

@@ -10,6 +10,8 @@ import {
   RECEIVE_GOODS,
   RECEIVE_RATINGS,
   RECEIVE_INFO,
+  INCREAMENT_FOOD_COUNT,
+  DECREAMENT_FOOD_COUNT,
 } from "./mutationts-type";
 import {
   reqAddress,
@@ -102,4 +104,13 @@ export default {
       commit(RECEIVE_RATINGS,{ratings})
     }
   },
+
+  //同步获取商品数量
+  updateFoodCount({commit},{isAdd,food}){
+    if(isAdd){
+      commit(INCREAMENT_FOOD_COUNT,{food})
+    }else{
+      commit(DECREAMENT_FOOD_COUNT,{food})
+    }
+  }
 }
