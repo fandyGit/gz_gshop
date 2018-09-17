@@ -12,6 +12,8 @@ import {
   RECEIVE_INFO,
   INCREAMENT_FOOD_COUNT,
   DECREAMENT_FOOD_COUNT,
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOPS,
 } from "./mutationts-type";
 import {
   reqAddress,
@@ -21,7 +23,8 @@ import {
   reqLogout,
   reqShopGoods,
   reqShopInfo,
-  reqShopRatings
+  reqShopRatings,
+  reqSearchShop
 } from "../api";
 
 
@@ -97,11 +100,12 @@ export default {
     }
   },
   //异步获取商品评论信息数据
-  async getShopRatings({commit}){
-    const result=await reqShopInfo();
+  async getShopRatings({commit},callback){
+    const result=await reqShopRatings();
     if(result.code===0){
       const ratings=result.data;
-      commit(RECEIVE_RATINGS,{ratings})
+      commit(RECEIVE_RATINGS,{ratings});
+      callback&&callback();
     }
   },
 
@@ -112,5 +116,18 @@ export default {
     }else{
       commit(DECREAMENT_FOOD_COUNT,{food})
     }
-  }
+  },
+  //同步清空购物车
+  clearCart({commit}){
+    commit(CLEAR_CART)
+  },
+  //异步获取搜索商品数据
+  async searchShops({commit,state},keyword){
+    const geohash=state.latitude+','+state.longitude;
+    const result=await reqSearchShop(geohash,keyword);
+    if(result.code===0){
+      const searchShops=result.data;
+      commit(RECEIVE_SEARCH_SHOPS,{searchShops});
+    }
+  },
 }

@@ -22,7 +22,7 @@
         <div class="shopcart-list" v-if="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-            <span class="empty">清空</span>
+            <span class="empty" @click="clearCart">清空</span>
           </div>
           <div class="list-content">
             <ul>
@@ -46,6 +46,8 @@
 <script>
   import CartControl from '../CartControl/CartControl'
   import {mapState,mapGetters} from 'vuex'
+  import BScroll from 'better-scroll'
+  import { MessageBox } from 'mint-ui';
   export default {
     name: "ShopCart",
     data(){
@@ -81,15 +83,37 @@
           this.isShow=false;
           return false;
         }
+        if(this.isShow){
+          this.$nextTick(()=>{
+            //listContent实例只能是一个单例对象  创建之前创建之后
+            if(!this.listContent){
+              this.listContent = new BScroll('.list-content',{
+                click:true,//不是原生的click
+              })
+            }else{
+              this.listContent.refresh();//重新计算高度刷新，确保第一次可以滑动
+            }
 
+          })
+        }
         return this.isShow;
-      }
+      },
     },
     methods:{
       toggleShow(){
         if(this.totalCount>0){
           this.isShow=!this.isShow;
         }
+      },
+      clearCart(){
+        MessageBox.confirm('确定清空购物车吗?').then(
+          action => {
+              this.$store.dispatch('clearCart');
+          },
+          action => {
+            console.log('你点击了取消按钮');
+          }
+        );
       }
     }
   }

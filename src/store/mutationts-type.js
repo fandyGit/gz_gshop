@@ -13,3 +13,7 @@ export const RECEIVE_INFO='receive_info';//接受用户信息数据
 
 export const INCREAMENT_FOOD_COUNT='increament_food_count';//增加商品数量
 export const DECREAMENT_FOOD_COUNT='decreament_food_count';//减少商品数量
+
+export const CLEAR_CART='clear_cart';//清空购物车
+
+export const RECEIVE_SEARCH_SHOPS='receive_search_shops';//接受搜索到的商店

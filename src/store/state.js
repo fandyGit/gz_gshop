@@ -12,5 +12,6 @@ export default {
   ratings:[],//商家评论列表
   info:{},//商家信息
   cartFoods:[],//购物车的商品数组
+  searchShops:[],//搜索到的商店名称
 
 }

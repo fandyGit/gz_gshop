@@ -4,10 +4,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 //引入路由组件
-import Msite from '../pages/Msite/Msite'
-import Order from '../pages/Order/Order'
-import Profile from '../pages/Profile/Profile'
-import Search from '../pages/Search/Search'
+// import Msite from '../pages/Msite/Msite'
+// import Order from '../pages/Order/Order'
+// import Profile from '../pages/Profile/Profile'
+// import Search from '../pages/Search/Search'
+//路由懒加载---只有点击的时候才会加载对应的路由---针对于顶级路由，多发送请求，可以减少一个文件的大小
+const Msite=()=>import('../pages/Msite/Msite');
+const Order=()=>import('../pages/Order/Order');
+const Profile=()=>import('../pages/Profile/Profile');
+const Search=()=>import('../pages/Search/Search');
+
+
 import Login from '../pages/Login/Login'
 import Shop from '../pages/Shop/Shop'
 import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods'

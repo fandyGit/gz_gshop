@@ -13,6 +13,8 @@ import {
   RECEIVE_INFO,
   INCREAMENT_FOOD_COUNT,
   DECREAMENT_FOOD_COUNT,
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOPS,
 } from "./mutationts-type";
 
 export default {
@@ -66,5 +68,15 @@ export default {
         state.cartFoods.splice(state.cartFoods.indexOf(food),1);
       }
     }
+  },
+
+  [CLEAR_CART](state){
+    //清除foods中的count
+    state.cartFoods.forEach(food=>food.count=0)
+    //只有这一句的话，不能请清除count;
+    state.cartFoods=[];
+  },
+  [RECEIVE_SEARCH_SHOPS](state,{searchShops}){
+    state.searchShops=searchShops;
   },
 }
